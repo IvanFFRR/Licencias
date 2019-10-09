@@ -124,13 +124,15 @@ public class ConexionJDBC {
             ps.setInt(4, v.getCantidad());
             ps.setInt(5, v.getMes());
             ps.setInt(6, v.getAnio());
+            ps.execute();
             
-            
+            inserto = true;           
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
             cerrarConexion();
         }
+        return inserto;
     }
 }
