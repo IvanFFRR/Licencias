@@ -50,8 +50,15 @@ public class ServletVentas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Venta v = new Venta();
+        v.setDesde(request.getParameter("txtDesde"));
+        v.setHasta(request.getParameter("txtHasta"));
+        v.setCliente(new Cliente(Integer.parseInt(request.getParameter("cmbCliente")), null));
+        v.setCantidad(Integer.parseInt(request.getParameter("spnCantidad")));
+        v.setMes(Integer.parseInt(request.getParameter("cmbMes")));
+        v.setAnio(Integer.parseInt(request.getParameter("spnAnio")));
         ConexionJDBC con = new ConexionJDBC();
-        
+        con.insertarVenta(v);
         
     }
 }

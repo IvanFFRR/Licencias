@@ -31,7 +31,7 @@
                         <input name="txtHasta" class="form-control" />
                         
                         <label for="cmbCliente">Cliente:</label>
-                        <select name="cmbCliente" class="form-control">
+                        <select  name="cmbCliente" class="form-control">
                             <option value="">SELECCIONE</option>
                             <c:forEach items="${listaClientes}" var="cli">
                                 <option value="${cli.id}">${cli.nombre}</option>
