@@ -69,9 +69,8 @@ public class ConexionJDBC {
             st.execute(sql);
             inserto = true;
         }
-        catch(Exception exc)
+        catch(SQLException exc)
         {
-            exc.printStackTrace();
         }
         finally
         {

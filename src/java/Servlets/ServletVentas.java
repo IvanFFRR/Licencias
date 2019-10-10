@@ -2,6 +2,7 @@ package Servlets;
 
 import AccesoDatos.ConexionJDBC;
 import Modelo.Cliente;
+import Modelo.Venta;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -28,9 +29,13 @@ public class ServletVentas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ConexionJDBC con = new ConexionJDBC();
+        ArrayList<Venta> lista = con.obtenerVentas();
+        request.setAttribute("lista", lista);
         ArrayList<Cliente> clientes = con.obtenerClientes();
         request.setAttribute("listaClientes", clientes);
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/formVentas.jsp");
+        String modo = request.getParameter("modo");
+        RequestDispatcher rd = getServletContext().getRequestDispatcher(modo != null && modo.equals("lista") 
+                                                                        ? "/listadoVentas.jsp" : "/formVentas.jsp");
         rd.forward(request, response);
     }
 
@@ -45,6 +50,8 @@ public class ServletVentas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ConexionJDBC con = new ConexionJDBC();
+        
         
     }
 }
